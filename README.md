@@ -1,14 +1,13 @@
-# free-agario-bots
+## Free FaceBook Agar.io Bots
 Free open source agar.io facebook bots, normal and proxy version!
 
-## Discord
-1. [200bots.ga](http://200bots.ga)
-2. [Free Agar.io Bots](https://discord.gg/SDMNEcJ)
-
-## Usage
+## Tutorial
 1. [How to get Facebook Token](https://www.youtube.com/watch?v=Sjtb_OHP2tE)
 2. [Video tutorial for Windows](https://www.youtube.com/watch?v=TkihvNIpiTw)
 
+## Discord
+1. [Free Agar.io Bots](https://discord.gg/SDMNEcJ)
+2. [200bots.ga](http://200bots.ga)
 
 Windows
 -------
