@@ -1,5 +1,6 @@
 # free-agario-bots
-Free open source agar.io facebook bots, normal and proxy version!
+Free open source agar.io facebook bots proxy version!
+
 
 ## Change Log
 New version - v2.0.0
