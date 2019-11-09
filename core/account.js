@@ -70,6 +70,16 @@ Account.prototype.requestFBToken = function(cb) {
                 res.headers.location.replace(/expires_in=([0-9]*)/, function(_, expire) {
                     if(expire) {
                         account.token_expire = (+new Date) + expire*1000;
+                        /* var remain = account.token_expire - Date.now();
+                        var _second = 1000;
+                        var _minute = _second * 60;
+                        var _hour = _minute * 60;
+                        var _day = _hour * 24;
+                        var daysLeft = Math['floor'](remain / _day);
+                        var hoursLeft = Math['floor']((remain % _day) / _hour);
+                        var minitesLeft = Math['floor']((remain % _hour) / _minute);
+                        var secondsLeft = Math['floor']((remain % _minute) / _second);
+                        console.log("Expire" + daysLeft + "days" + hoursLeft + "hours" + minitesLeft + "minutes" + secondsLeft + "second") */
                     }
                 });
             }

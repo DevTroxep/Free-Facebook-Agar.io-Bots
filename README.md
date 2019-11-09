@@ -1,13 +1,20 @@
-## Free FaceBook Agar.io Bots
+# free-agario-bots
 Free open source agar.io facebook bots, normal and proxy version!
 
-## Tutorial
-1. [How to get Facebook Token](https://www.youtube.com/watch?v=Sjtb_OHP2tE)
-2. [Video tutorial for Windows](https://www.youtube.com/watch?v=TkihvNIpiTw)
+## Change Log
+New version - v2.0.0
+* Bypass recaptcha v3
+* Updated FB files
+* New vanila userscript - potion hack
 
 ## Discord
-1. [Free Agar.io Bots](https://discord.gg/SDMNEcJ)
-2. [200bots.ga](http://200bots.ga)
+1. [200bots.ga](http://200bots.ga)
+2. [Free Agar.io Bots](https://discord.gg/SDMNEcJ)
+
+## Usage
+1. [How to get Facebook Token](https://www.youtube.com/watch?v=Sjtb_OHP2tE)
+2. [Video tutorial for Windows](https://youtu.be/qnFnkmkh2VQ)
+
 
 Windows
 -------

@@ -1,4 +1,4 @@
-var Account = require("./account");
+var Account = require("./account.js");
 var fs = require("fs");
 var WebSocket = require('ws');
 class facebookHandler {
@@ -10,6 +10,8 @@ class facebookHandler {
         this.manageServer = null;
         this.count = 0;
         this.reqs = {};
+        this.recaptchaTokens = [];
+        this.storeToken = true;
         this.setAccounts(JSON.parse(fs.readFileSync("./facebookTokens.json", "utf-8")));
         this.connectManager();
     }
@@ -24,7 +26,7 @@ class facebookHandler {
         var manager = this;
         if (this.accounts.length < 1) {
             return console.log("NO ACCOUNTS");
-        }
+        }    
         var amountOfAccounts = this.accounts.length;
         var amountOfTriedAccounts = 0;
         this.accounts.map(function(cookie) {
@@ -47,7 +49,6 @@ class facebookHandler {
                 newAccountValidated();
             });
         });
-
         function newAccountValidated() {
             amountOfTriedAccounts++;
             process.stdout.write(`\r[FaceBookManager]`.green + ` Checking... ${Math.floor((amountOfTriedAccounts / amountOfAccounts) * 100)}% (Checked accounts: ${amountOfTriedAccounts} / ${amountOfAccounts})`.yellow);
@@ -70,6 +71,15 @@ class facebookHandler {
         this.send(buf);
         this.reqs[c] = callback;
     }
+    getRecaptchaToken() {
+        this.send(Buffer.from([21]));
+    }
+    sendRecaptchaToken(token) {
+        let buf = new Buffer.alloc(2 + token.length);
+        buf.writeUInt8(20, 0);
+        buf.write(token, 1);
+        this.send(buf);
+    }
     returnToken(c) {
         let buf = new Buffer.alloc(3);
         buf.writeUInt8(13, 0);
@@ -89,6 +99,17 @@ class facebookHandler {
         let buf = msg.data || msg;
         let offset = 0;
         switch (buf.readUInt8(offset++)) {
+            case 30:
+                let token = '';
+                let c = '';
+                while ((c = buf.readUInt8(offset++)) != 0) {
+                    token += String.fromCharCode(c);
+                }
+                this.recaptchaTokens.push(token);
+                break;
+            case 31:
+                this.storeToken = false;
+                break;
             case 102:
                 this.requestedCallback(buf);
                 break;
@@ -97,7 +118,11 @@ class facebookHandler {
                 break;
         }
     }
-    onclose(e) {}
+    onclose(e) {
+        setTimeout(() => {
+            this.connectManager();
+        }, 2000);
+    }
     onerror(e) {}
 }
 
